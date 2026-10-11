@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <h2>Intern<span>Hub</span></h2>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#internships">Internships</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <p class="tag">YOUR CAREER STARTS HERE</p>
+    <h1>Find Your Perfect Internship</h1>
+    <p>Discover opportunities, learn new skills and build your future.</p>
+
+    <div class="search-box">
+      <input type="text" id="searchInput"
+        placeholder="Search internship or company...">
+
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="web development">Web Development</option>
+        <option value="python">Python</option>
+        <option value="ai/ml">AI / ML</option>
+        <option value="java">Java</option>
+      </select>
+
+      <button id="searchBtn">Search</button>
+    </div>
+  </section>
+
+  <main class="container" id="internships">
+    <div class="section-heading">
+      <div>
+        <h2>Explore Internships</h2>
+        <p>Find an opportunity that matches your interests.</p>
+      </div>
+      <span id="resultCount"></span>
+    </div>
+
+    <div class="internship-grid" id="internshipList"></div>
+    <p id="noResults" hidden>No internships found. Try another search.</p>
+  </main>
+
+  <section class="about" id="about">
+    <h2>Start Learning. Start Growing.</h2>
+    <p>Explore opportunities and take the first step in your career.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 InternHub | Student Internship Board Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
