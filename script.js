@@ -114,3 +114,73 @@ internshipList.addEventListener("click", function (event) {
 });
 
 displayInternships();
+document.addEventListener('DOMContentLoaded', () => {
+  const internshipsList = document.getElementById('internships'); // Or your container ID
+  const loadingEl = document.getElementById('loading');
+  const errorEl = document.getElementById('error-message');
+  const applicationForm = document.getElementById('applicationForm');
+  const formResponse = document.getElementById('formResponse');
+
+  // Fetch Internships with Loading & Error States
+  async function fetchInternships() {
+    if (loadingEl) loadingEl.style.display = 'block';
+    if (errorEl) errorEl.style.display = 'none';
+
+    try {
+      const response = await fetch('/api/internships');
+      if (!response.ok) throw new Error('Failed to fetch');
+      
+      const data = await response.json();
+      
+      if (loadingEl) loadingEl.style.display = 'none';
+      
+      // Render Internships (adjust based on your existing rendering logic)
+      console.log('Internships loaded:', data);
+    } catch (err) {
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (errorEl) errorEl.style.display = 'block';
+    }
+  }
+
+  // Handle Application Form Submission
+  if (applicationForm) {
+    applicationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('applicantName').value.trim();
+      const email = document.getElementById('applicantEmail').value.trim();
+      const resume = document.getElementById('resumeUrl').value.trim();
+
+      // Client-side simple validation
+      if (!name || !email || !resume) {
+        formResponse.style.color = 'red';
+        formResponse.textContent = 'All fields are required!';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, resume })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          formResponse.style.color = 'green';
+          formResponse.textContent = result.message;
+          applicationForm.reset();
+        } else {
+          formResponse.style.color = 'red';
+          formResponse.textContent = result.errors ? result.errors[0].msg : 'Submission failed.';
+        }
+      } catch (err) {
+        formResponse.style.color = 'red';
+        formResponse.textContent = 'Server error. Please try again later.';
+      }
+    });
+  }
+
+  fetchInternships();
+});

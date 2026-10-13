@@ -63,3 +63,33 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!-- Loading & Error Indicators -->
+<div id="loading" style="display: none; text-align: center; margin: 20px 0;">
+  <p>🔄 Loading internships...</p>
+</div>
+<div id="error-message" style="display: none; color: red; text-align: center; margin: 20px 0;">
+  <p>⚠️ Failed to load internships. Please try again later.</p>
+</div>
+
+<!-- Application Form Section -->
+<section id="apply-section" style="margin: 40px 0; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+  <h2>Apply for an Internship</h2>
+  <form id="applicationForm">
+    <div style="margin-bottom: 15px;">
+      <label for="applicantName">Full Name:</label><br>
+      <input type="text" id="applicantName" required style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="applicantEmail">Email Address:</label><br>
+      <input type="email" id="applicantEmail" required style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="resumeUrl">Resume URL (e.g., Google Drive / LinkedIn link):</label><br>
+      <input type="url" id="resumeUrl" required style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Submit Application
+    </button>
+  </form>
+  <div id="formResponse" style="margin-top: 15px;"></div>
+</section>
